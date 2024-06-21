@@ -14,9 +14,14 @@ echo "CREATE USER IF NOT EXISTS '$SQL_USER'@'%' IDENTIFIED BY '$SQL_PASSWORD';" 
 echo "GRANT ALL ON wordpress.* TO '$SQL_USER'@'%' IDENTIFIED BY '$SQL_PASSWORD';"  >> file
 echo "FLUSH PRIVILEGES;" >> file
 
-cat file
+#cat file
 
 mysqld --user=mysql --verbose --bootstrap < file
+
+# Vérification des bases de données et des utilisateurs
+echo "SHOW DATABASES;" | mysql -u root -p"$SQL_ROOT_PASSWORD"
+echo "SHOW GRANTS FOR '$SQL_USER'@'%';" | mysql -u root -p"$SQL_ROOT_PASSWORD"
+
 rm file
 
 exec mysqld
