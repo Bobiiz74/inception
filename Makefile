@@ -1,8 +1,10 @@
 DOCKER = docker compose -f srcs/docker-compose.yml
-DATA_FOLDER = /home/robin/data
+
 
 all:
 	clear
+	mkdir -p ~/data/wordpress
+	mkdir -p ~/data/mariadb
 	$(DOCKER) up -d --build
 
 clean:
@@ -19,7 +21,7 @@ list:
 	clear
 	docker ps -a
 	docker images ls
-	docker network ls
 	docker volume ls
+	docker network ls
 
 .PHONY: all re fclean clean list

@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
     expose:
       - "3306"
-      
+
   wordpress:
     image: wordpress
     container_name: wordpress
@@ -46,6 +46,8 @@ services:
     ports:
       - "443:443"
     restart: on-failure
+    depends_on:
+    - wordpress
 
 
 volumes:
