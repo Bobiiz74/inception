@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Attente pour que MariaDB soit prêt
-until mysql -h mariadb -u $SQL_USER -p$SQL_PASSWORD -e "SHOW DATABASES;" 2>/dev/null; do
-  echo "Waiting for MariaDB to be ready..."
+#until mysql -h mariadb -u $SQL_USER -p$SQL_PASSWORD -e "SHOW DATABASES;" 2>/dev/null; do
+#  echo "Waiting for MariaDB to be ready..."
   sleep 5
-done
+#done
 
 if ! wp core is-installed --allow-root ; then
     wp core download --allow-root --force

@@ -9,11 +9,15 @@ all:
 
 clean:
 	clear
-	docker image prune -a
 	$(DOCKER) down
+	docker image prune -a
 
 fclean: clean
+	docker volume rm srcs_wordpress --force
+	docker volume rm srcs_mariadb --force
 	docker system prune -a --volumes
+	rm -rf ~/data/wordpress
+	rm -rf ~/data/mariadb
 
 re : fclean all
 
